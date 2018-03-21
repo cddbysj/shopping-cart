@@ -1,0 +1,51 @@
+{
+	"status": 1,
+	"result": {
+		"totalMoney": 0,
+		"productList": [
+			{
+				"productName": "苹果",
+				"productImg": "images/apple.gif",
+				"productDescription": "新疆阿克苏红富士，3只装",
+				"productPrice": 12.99,
+				"productQuantity": 3,
+				"stock": true,
+				"parts": [
+					{
+						"partsId": 10086,
+						"partName": "一粒蛋"
+					}
+				]
+			},
+			{
+				"productName": "香蕉",
+				"productImg": "images/banana.gif",
+				"productDescription": "宝岛台湾烂香蕉，3只装",
+				"productPrice": 8.99,
+				"productQuantity": 2,
+				"stock": true,
+				"parts": [
+					{
+					"partsId": 10087,
+					"partName": "一颗槟郎"
+					}
+				]
+			},
+			{
+				"productName": "樱桃",
+				"productImg": "images/cherry.gif",
+				"productDescription": "智利大樱桃，一斤装",
+				"productPrice": 49.99,
+				"productQuantity": 1,
+				"stock": false,
+				"parts": [
+					{
+						"partsId": 10088,
+						"partName": "一根烟"
+					}
+				]
+			}
+		]
+	},
+	"message": ""
+}

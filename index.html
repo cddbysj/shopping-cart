@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shopping Cart V0.1</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/theme1.css">
+</head>
+<body>
+	<div id="app">
+		<div class="cart">
+			<div class="checkout-title">购物车</div>
+			<div class="item-list-wrap">
+				<div class="cart-item-head">
+					<ul>
+						<li>商品</li>
+						<li>商品金额</li>
+						<li>数量</li>
+						<li>小计</li>
+						<li>编辑</li>
+					</ul>
+				</div>
+				<div class="cart-item-list">
+					<ul>
+						<li v-for="item in currentProductList">
+							<div class="cart-tab-1">
+								<div class="cart-item-check">
+									<a href="#" class="item-check-btn">
+										<img
+											:src="item.checked? btnCheckedSrc:btnUncheckSrc"
+											@click="selectItem(item)">
+									</a>
+								</div>
+								<div class="cart-item-pic">
+									<img :src="item.productImg"
+									:alt="item.productName"
+									:title="item.productName">
+								</div>
+								<div class="item-descrip">
+									<div class="cart-item-title">
+										<div class="item-name">{{ item.productName }}</div>
+									</div>
+									<div class="item-detail">
+										{{ item.productDescription }}
+									</div>
+									<div class="item-include">
+										<dl>
+											<dt>赠品</dt>
+											<dd v-for="p in item.parts">
+												{{ p.partName }}
+											</dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+							<div class="cart-tab-2">
+								<div class="item-price">{{ item.productPrice | formatMoney()}}</div>
+							</div>
+							<div class="cart-tab-3">
+								<div class="item-quantity">
+									<div>
+										<a href="#" @click.prevent="reduceQuantity(item)">-</a>
+										<input type="text" v-model="item.productQuantity" min="1" :disabled="!item.stock">
+										<a href="#" @click.prevent="increaseQuantity(item)">+</a>
+									</div>
+									<div class="item-stock active" v-if="item.stock">有货</div>
+									<div class="item-stock warn" v-else>无货</div>
+								</div>
+							</div>
+							<div class="cart-tab-4">
+								<div class="item-subtotal">
+									{{ subtotal(item) |	formatMoney() }}
+								</div>
+							</div>
+							<div class="cart-tab-5">
+								<a href="#" class="item-edit"
+									@click="delItem(item)">
+									<img src="icons/delete_button.png">
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="cart-foot">
+				<div class="check-all">
+					<a href="#" @click.prevent="checkReverse()">
+						<img :src="allChecked? btnCheckedSrc:btnUncheckSrc">
+					</a>
+					<span>全选</span>
+				</div>
+				<div class="checkout">
+					<span>总金额：{{ totalMoney | formatMoney() }}</span>
+					<a href="#" @click="checkout()">去结算</a>
+				</div>
+				<!-- 确认结账的遮罩 -->
+				<div class="modal-bg" v-if="checkoutModalFlag"
+					@click="hideModal('checkout')"></div>
+				<div class="modal-box" v-if="checkoutModalFlag">
+					<div class="info">提示</div>
+					<p>确定去结账吗？</p>
+					<div class="btn-wrap">
+						<a class="btn btn-cancel" @click="hideModal('checkout')">取消</a>
+						<a class="btn btn-confirm" @click="checkoutConfirm()">确定</a>
+					</div>
+				</div>
+				<!-- 确认是否删除当前商品的弹窗 -->
+				<div class="modal-bg" v-if="delModalFlag"
+					@click="hideModal('delete')"></div>
+				<div class="modal-box" v-if="delModalFlag">
+					<div class="info">提示</div>
+					<p>确定删除当前商品吗？</p>
+					<div class="btn-wrap">
+						<a class="btn btn-cancel" @click="cancelDel">取消</a>
+						<a class="btn btn-confirm" @click="delItemConfirm()">确定</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 作为本地文件打开 -->
+	<!-- <script	src="file:///E:/develop/portfolio/lib/vue.js"></script> -->
+	<!-- 作为在服务器上的文件打开 -->
+	<script src="js/lib/vue.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
