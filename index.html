@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
 	<title>Shopping Cart V0.1</title>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="Bill Wen">
 	<link rel="stylesheet" type="text/css" href="css/theme1.css">
 </head>
 <body>
-	<div id="app">
+  <div id="app">
 		<div class="cart">
 			<div class="checkout-title">购物车</div>
 			<div class="item-list-wrap">
@@ -24,10 +28,12 @@
 						<li v-for="item in currentProductList">
 							<div class="cart-tab-1">
 								<div class="cart-item-check">
-									<a href="#" class="item-check-btn">
-										<img
-											:src="item.checked? btnCheckedSrc:btnUncheckSrc"
-											@click="selectItem(item)">
+									<a href="#" class="item-check-btn"
+										@click="selectItem(item)">
+										<svg class="icon" aria-hidden="true"
+											:class="{'selected': item.checked}">
+										    <use xlink:href="#icon-selected"></use>
+										</svg>
 									</a>
 								</div>
 								<div class="cart-item-pic">
@@ -74,7 +80,9 @@
 							<div class="cart-tab-5">
 								<a href="#" class="item-edit"
 									@click="delItem(item)">
-									<img src="icons/delete_button.png">
+									<svg class="icon" aria-hidden="true">
+										    <use xlink:href="#icon-delete"></use>
+										</svg>
 								</a>
 							</div>
 						</li>
@@ -84,7 +92,10 @@
 			<div class="cart-foot">
 				<div class="check-all">
 					<a href="#" @click.prevent="checkReverse()">
-						<img :src="allChecked? btnCheckedSrc:btnUncheckSrc">
+						<svg class="icon" aria-hidden="true"
+							:class="{'selected': allChecked}">
+						    <use xlink:href="#icon-selected"></use>
+						</svg>
 					</a>
 					<span>全选</span>
 				</div>
@@ -124,6 +135,7 @@
 	<script src="js/lib/vue.js"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="http://at.alicdn.com/t/font_602046_wpv2xodwa1o72e29.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>
