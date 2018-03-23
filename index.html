@@ -7,10 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="Bill Wen">
-	<link rel="stylesheet" type="text/css" href="css/theme1.css">
+	<link rel="stylesheet" type="text/css" href="css/theme.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="Bookmark" href="favicon.ico">
 </head>
 <body>
-  <div id="app">
+	<div id="app" v-cloak>
 		<div class="cart">
 			<div class="checkout-title">购物车</div>
 			<div class="item-list-wrap">
@@ -124,14 +126,10 @@
 						<a class="btn btn-cancel" @click="cancelDel">取消</a>
 						<a class="btn btn-confirm" @click="delItemConfirm()">确定</a>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 作为本地文件打开 -->
-	<!-- <script	src="file:///E:/develop/portfolio/lib/vue.js"></script> -->
-	<!-- 作为在服务器上的文件打开 -->
 	<script src="js/lib/vue.js"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>

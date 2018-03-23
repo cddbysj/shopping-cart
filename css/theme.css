@@ -257,3 +257,7 @@ div[class*="cart-tab"] {
 .selected {
 	fill: #8CBB19;
 }
+
+[v-cloak] {
+	display: none;
+}
